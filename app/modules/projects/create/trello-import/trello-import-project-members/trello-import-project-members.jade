@@ -1,0 +1,35 @@
+.create-project.import-project
+    div(ng-include="'projects/create/import/import-header.html'")
+
+    h2(translate="PROJECT.IMPORT.TRELLO.PROJECT_MEMBERS")
+    p.process-description(translate="PROJECT.IMPORT.TRELLO.PROCESS_DESCRIPTION")
+
+    p.importer-name(translate="PROJECT.IMPORT.TRELLO.TITLE")
+    ul
+        li.user-row(tg-repeat="member in vm.members track by member.get('id')")
+            .user-info
+                .avatar.empty {{member.get('fullName')[0].toUpperCase()}}
+                span.username {{member.get('fullName')}}
+
+            button.button.button-green(
+                ng-click="vm.searchUser(member)"
+                translate="PROJECT.IMPORT.TRELLO.CHOOSE"
+            )
+
+    button.button.button-green.submit(
+        ng-click="vm.beforeSubmitUsers()"
+        translate="PROJECT.IMPORT.IMPORT"
+    )
+
+    tg-select-import-user-lightbox.lightbox(
+       visible="vm.selectImportUserLightbox"
+       on-close="vm.selectImportUserLightbox = false"
+       user="vm.searchingUser"
+       on-select-user="vm.selectUser(user)"
+    )
+
+    tg-warning-user-import-lightbox.lightbox(
+        visible="vm.warningImportUsers"
+        on-confirm="vm.onConfirm()"
+        on-close="vm.warningImportUsers = false"
+    )

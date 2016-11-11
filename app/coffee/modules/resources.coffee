@@ -203,6 +203,13 @@ urls = {
 
     # Stats
     "stats-discover": "/stats/discover"
+
+    # Importers
+    "importers-trello-auth-url": "/importers/trello/auth_url"
+    "importers-trello-authorize": "/importers/trello/authorize"
+    "importers-trello-list-projects": "/importers/trello/list_projects"
+    "importers-trello-list-users": "/importers/trello/list_users"
+    "importers-trello-import-project": "/importers/trello/import_project"
 }
 
 # Initialize api urls service

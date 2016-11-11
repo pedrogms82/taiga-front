@@ -1,0 +1,25 @@
+.create-project.import-project(ng-if="!vm.from")
+    div(ng-include="'projects/create/import/import-header.html'")
+
+    section.import-project-from
+        h1
+            tg-svg(svg-icon="icon-upload")
+            span(translate="PROJECT.IMPORT.IMPORT")
+        ul
+            li
+                .import-project-from-site Taiga
+            li
+                .import-project-from-site(ng-click="vm.select('trello')") Trello
+            li
+                .import-project-from-site Jira
+            li
+                .import-project-from-site Github
+
+
+        a.back(href="") < {{'PROJECT.CREATE.BACK' | translate}}
+
+
+tg-trello-import(
+    ng-if="vm.from == 'trello'"
+    on-cancel="vm.onCancel()"
+)

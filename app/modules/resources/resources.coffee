@@ -28,7 +28,8 @@ services = [
     "tgAttachmentsResource",
     "tgStatsResource",
     "tgWikiHistory",
-    "tgEpicsResource"
+    "tgEpicsResource",
+    "tgTrelloImportResource"
 ]
 
 Resources = ($injector) ->

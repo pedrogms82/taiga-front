@@ -1,0 +1,37 @@
+tg-trello-import-project-form {
+    fieldset {
+        margin-bottom: 1rem;
+        position: relative;
+        .check {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+    }
+    label {
+        @include font-type(bold);
+        @include font-size(small);
+        display: block;
+        margin-bottom: .25rem;
+        position: relative;
+        span {
+            display: block;
+        }
+        .description {
+            @include font-type(normal);
+        }
+    }
+    .privacity {
+        @include btn-group;
+        input {
+            display: none;
+        }
+        label {
+            background: $mass-white;
+        }
+    }
+    .create-project-action-submit {
+        flex: 4;
+        margin-left: 1rem;
+    }
+}
