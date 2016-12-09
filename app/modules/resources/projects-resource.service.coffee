@@ -22,18 +22,11 @@ pagination = () ->
 Resource = (urlsService, http, paginateResponseService) ->
     service = {}
 
-    # create: (name, data, dataTypes={}, extraParams={}) ->
-    #     defered = @q.defer()
-    #     url = @urls.resolve(name)
-    #
-    #     promise = @http.post(url, JSON.stringify(data), extraParams)
-    #     promise.success (_data, _status) =>
-    #         defered.resolve(@model.make_model(name, _data, null, dataTypes))
-    #
-    #     promise.error (data, status) =>
-    #         defered.reject(data)
-    #
-    #     return defered.promise
+    service.create = (data) ->
+        url = urlsService.resolve('projects')
+
+        return http.post(url, JSON.stringify(data))
+            .then (result) => return Immutable.fromJS(result.data)
 
     service.duplicate = (projectId, data) ->
 

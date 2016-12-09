@@ -24,6 +24,7 @@ CreateProjectFormDirective = () ->
         controllerAs: "vm",
         bindToController: true,
         scope: {
+            type: '@',
             onCancel: '&'
         }
     }

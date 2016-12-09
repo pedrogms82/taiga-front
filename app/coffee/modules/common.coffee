@@ -216,6 +216,9 @@ module.directive("tgToggleComment", ToggleCommentDirective)
 
 ProjectUrl = ($navurls) ->
     get = (project) ->
+        if project.toJS
+            project = project.toJS()
+
         ctx = {project: project.slug}
 
         if project.is_backlog_activated and project.my_permissions.indexOf("view_us") > -1

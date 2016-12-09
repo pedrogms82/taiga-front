@@ -65,7 +65,7 @@
 tg-create-project-form(
     ng-if="vm.step == 'kanban' || vm.step == 'scrum'"
     on-cancel="vm.step = 'home'"
-    type="vm.step"
+    type="{{vm.step}}"
 )
 
 tg-duplicate-project(

@@ -19,14 +19,29 @@
 
 class CreatetProjectFormController
     @.$inject = [
-        "tgCurrentUserService"
-    ]
+        "tgCurrentUserService",
+        "tgProjectsService",
+        "$projectUrl",
+        "$location"
+   ]
 
-    constructor: (@currentUserService) ->
-        @.project = {}
+    constructor: (@currentUserService, @projectsService, @projectUrl, @location) ->
+        @.projectForm = {
+            is_private: false
+        }
+
+        @.canCreatePublicProjects = @currentUserService.canCreatePublicProjects()
+        @.canCreatePrivateProjects = @currentUserService.canCreatePrivateProjects()
+
+        if @.type == 'scrum'
+            @.projectForm.creation_template = 1
+        else
+            @.projectForm.creation_template = 2
 
     submit: () ->
         @.submiting = true
 
+        @projectsService.create(@.projectForm).then (project) =>
+            @location.url(@projectUrl.get(project))
 
 angular.module('taigaProjects').controller('CreateProjectFormCtrl', CreatetProjectFormController)
