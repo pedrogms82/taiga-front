@@ -17,14 +17,14 @@
             border: 0;
             opacity: .6;
             transition: all .2s ease-in;
-            &:after {
+            &::after {
                 background: $grayer;
                 left: 24px;
                 top: 8px;
                 transform: rotate(0);
                 transform-origin: center;
             }
-            &:before {
+            &::before {
                 background: $grayer;
                 right: 22px;
                 top: 8px;

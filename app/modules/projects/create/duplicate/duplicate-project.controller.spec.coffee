@@ -116,6 +116,9 @@ describe "DuplicateProjectController", ->
             {id: 2},
             {id: 3}
         ])
+        ctrl.user = Immutable.fromJS(
+            id: 1
+        )
         membersAfter = Immutable.fromJS([
             {id: 2},
             {id: 3}
@@ -123,8 +126,9 @@ describe "DuplicateProjectController", ->
 
         ctrl.setInvitedMembers = sinon.spy()
         ctrl.checkUsersLimit = sinon.spy()
+        ctrl.invitedMembers = membersBefore
 
-        ctrl._getInvitedMembers(membersBefore)
+        ctrl._getInvitedMembers(ctrl.invitedMembers)
         expect(ctrl.invitedMembers.toJS()).to.be.eql(membersAfter.toJS())
         expect(ctrl.setInvitedMembers).to.be.calledWith(ctrl.invitedMembers)
         expect(ctrl.checkUsersLimit).to.be.calledWith(ctrl.invitedMembers)
