@@ -928,6 +928,7 @@
         },
         "CREATE": {
             "TITLE": "Create Project",
+            "FRESH": "Fresh and clean. So exciting!",
             "CHOOSE_TEMPLATE": "Which template fits your project better?",
             "TEMPLATE_SCRUM": "Scrum",
             "TEMPLATE_SCRUM_DESC": "Prioritize and solve your tasks in short time cycles.",

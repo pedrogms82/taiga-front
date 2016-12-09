@@ -55,7 +55,17 @@ $create-project-padding: 1.25rem;
             background: $mass-white;
         }
     }
-
+    &-type {
+        @include font-type(bold);
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        span {
+            margin-left: .5rem;
+        }
+    }
 }
 
 .create-project-selector {
