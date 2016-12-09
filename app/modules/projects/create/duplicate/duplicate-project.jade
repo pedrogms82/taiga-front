@@ -12,17 +12,17 @@
                 autofocus
             )
                 option(
-                    value="" 
-                    disabled 
+                    value=""
+                    disabled
                     selected
                     translate="PROJECT.DUPLICATE.SELECT_PLACEHOLDER"
                 )
-        fieldset.duplicate-project-title
+        fieldset
             label(
                 translate="PROJECT.DUPLICATE.DETAILS"
                 for="project-name"
             )
-            input.e2e-duplicate-project-title(
+            input.e2e-create-project-title(
                 type="text"
                 ng-model="vm.duplicatedProject.name"
                 placeholder="{{'PROJECT.DUPLICATE.PROJECT_TITLE' | translate}}"
@@ -30,23 +30,23 @@
                 data-required="true"
                 required
             )
-        fieldset.duplicate-project-description
-            textarea.e2e-duplicate-project-description(
+        fieldset
+            textarea.e2e-create-project-description(
                 ng-model="vm.duplicatedProject.description"
                 placeholder="{{'PROJECT.DUPLICATE.PROJECT_DESCRIPTION' | translate}}"
                 data-required="true"
                 required
-            ) 
-        p.duplicate-project-limit(
+            )
+        p.create-project-limit(
             ng-if="!vm.canCreatePrivateProjects.valid"
             translate="PROJECT.CREATE.MAX_PRIVATE_PROJECTS"
         )
-        p.duplicate-project-limit(
+        p.create-project-limit(
             ng-if="!vm.canCreatePublicProjects.valid"
             translate="PROJECT.CREATE.MAX_PUBLIC_PROJECTS"
         )
-        
-        .duplicate-project-privacity(role="group")
+
+        .create-project-privacity(role="group")
             fieldset
                 input(
                     type="radio"
@@ -61,7 +61,7 @@
                     ng-checked="!vm.referenceProject.get('is_private')"
                     ng-change="vm.checkUsersLimit(vm.duplicatedProject.users)"
                 )
-                label.duplicate-project-privacity-label(for="template-public")
+                label(for="template-public")
                     tg-svg(svg-icon="icon-discover")
                     span(translate="PROJECT.CREATE.PUBLIC_PROJECT")
             fieldset
@@ -78,10 +78,10 @@
                     ng-checked="vm.referenceProject.get('is_private')"
                     ng-change="vm.checkUsersLimit(vm.duplicatedProject.users)"
                 )
-                label.duplicate-project-privacity-label(for="template-private")
+                label(for="template-private")
                     tg-svg(svg-icon="icon-lock")
                     span(translate="PROJECT.CREATE.PRIVATE_PROJECT")
-        
+
         label(ng-if="vm.invitedMembers")
             span(translate="PROJECT.CREATE.INVITE")
             span.mumble(
@@ -89,18 +89,18 @@
                 translate="PROJECT.CREATE.SOLO_PROJECT"
             )
             span.mumble(translate="PROJECT.CREATE.INVITE_LATER")
-        
+
         tg-invite-members(
             ng-if="vm.invitedMembers"
             members="vm.invitedMembers"
             on-set-invited-members="vm.setInvitedMembers(members)"
         )
-        
-        p.duplicate-project-limit(
+
+        p.create-project-limit(
             ng-if="vm.duplicatedProject.is_private && vm.limitMembersPrivateProject"
             translate="PROJECT.CREATE.MAX_MEMBERS"
         )
-        p.duplicate-project-limit(
+        p.create-project-limit(
             ng-if="!vm.duplicatedProject.is_private && vm.limitMembersPublicProject"
             translate="PROJECT.CREATE.MAX_MEMBERS"
         )
@@ -112,7 +112,7 @@
                 title="{{'PROJECT.CREATE.BACK' | translate}}"
                 translate="PROJECT.CREATE.BACK"
             )
-            button.button-green.create-project-action-duplicate.e2e-create-project-action-duplicate(
+            button.button-green.create-project-action-submit.e2e-create-project-action-duplicate(
                 type="submit"
                 ng-click="vm.onDuplicateProject()"
                 title="{{'PROJECT.CREATE.TITLE' | translate}}"
@@ -120,4 +120,3 @@
                 tg-loading="vm.loading"
                 translate="PROJECT.CREATE.TITLE"
             )
-                

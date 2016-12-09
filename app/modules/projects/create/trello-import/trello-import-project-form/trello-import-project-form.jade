@@ -27,7 +27,7 @@
             translate="PROJECT.CREATE.MAX_PRIVATE_PROJECTS"
         )
 
-        .privacity(role="group")
+        .create-project-privacity(role="group")
             fieldset
                 input(
                     type="radio"
@@ -61,7 +61,7 @@
                     tg-svg(svg-icon="icon-lock")
                     span(translate="PROJECT.CREATE.PRIVATE_PROJECT")
 
-        fieldset
+        fieldset.create-project-check
             label(for="archieved-projects")
                 span.title {{'PROJECT.IMPORT.ARCHIVED' | translate}}
                 span.description {{'PROJECT.IMPORT.ARCHIVED_DESCRIPTION' | translate}}
@@ -76,7 +76,7 @@
                 span.check-text.check-yes(translate="COMMON.YES")
                 span.check-text.check-no(translate="COMMON.NO")
 
-        fieldset
+        fieldset.create-project-check
             label(for="links")
                 span.title {{'PROJECT.IMPORT.LINKS' | translate}}
                 span.description {{'PROJECT.IMPORT.LINKS_DESCRIPTION' | translate}}

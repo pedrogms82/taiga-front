@@ -3,6 +3,33 @@ $create-project-padding: 1.25rem;
 .create-project {
     @include centered;
     max-width: 800px;
+    fieldset {
+        margin-bottom: 1rem;
+    }
+    label {
+        @include font-type(bold);
+        @include font-size(small);
+        display: block;
+        margin-bottom: .25rem;
+        .mumble {
+            @include font-type(light);
+            margin-left: .25rem;
+        }
+    }
+    &-check {
+        position: relative;
+        span {
+            display: block;
+        }
+        .description {
+            @include font-type(normal);
+        }
+        .check {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+    }
     &-title,
     &-description {
         text-align: center;
@@ -14,6 +41,21 @@ $create-project-padding: 1.25rem;
         color: $gray-light;
         margin-bottom: 2rem;
     }
+    &-limit {
+        @include font-type(light);
+        @include font-size(small);
+        color: $gray;
+    }
+    &-privacity {
+        @include btn-group;
+        input {
+            display: none;
+        }
+        label {
+            background: $mass-white;
+        }
+    }
+
 }
 
 .create-project-selector {
@@ -85,7 +127,7 @@ $create-project-padding: 1.25rem;
         @include font-size(large);
         padding: 12px;
     }
-    .create-project-action-duplicate {
+    .create-project-action-submit {
         flex: 4;
         margin-left: 1rem;
     }
