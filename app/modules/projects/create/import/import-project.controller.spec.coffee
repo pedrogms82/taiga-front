@@ -47,6 +47,14 @@ describe "ImportProjectCtrl", ->
 
         $provide.value("tgGithubImportService", mocks.githubService)
 
+    _mockAsanaImportService = ->
+        mocks.asanaService = {
+            authorize: sinon.stub(),
+            getAuthUrl: sinon.stub()
+        }
+
+        $provide.value("tgAsanaImportService", mocks.asanaService)
+
     _mockWindow = ->
         mocks.window = {
             open: sinon.stub()
@@ -67,7 +75,7 @@ describe "ImportProjectCtrl", ->
 
             _mockTrelloImportService()
             _mockJiraImportService()
-            _mockGithubImportService()
+            _mockAsanaImportService()
             _mockWindow()
             _mockLocation()
 
@@ -131,6 +139,22 @@ describe "ImportProjectCtrl", ->
         ctrl.start().then () ->
             expect(ctrl.token).to.be.equal("token")
             expect(mocks.location.search).have.been.calledWith({from: "github", token: "token2"})
+
+            done()
+
+    it "initialize form with asana", (done) ->
+        searchResult = {
+            asana_code: 123,
+            token: "token"
+        }
+
+        mocks.location.search.returns(searchResult)
+        mocks.asanaService.authorize.withArgs(123).promise().resolve("token2")
+
+        ctrl = $controller("ImportProjectCtrl")
+        ctrl.start().then () ->
+            expect(ctrl.token).to.be.equal("token")
+            expect(mocks.location.search).have.been.calledWith({from: "asana", token: "token2"})
 
             done()
 

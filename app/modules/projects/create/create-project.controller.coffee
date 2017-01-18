@@ -34,7 +34,7 @@ class CreateProjectController
         @.displayKanbanDesc = false
         @.step = "home"
 
-        if @location.search().from == "trello" or @location.search().from == "jira" or @location.search().from == "github"
+        if @location.search().from == "trello" or @location.search().from == "jira" or @location.search().from == "github"  or @location.search().from == "asana"
             @.step = "import"
 
     _setMeta: () ->

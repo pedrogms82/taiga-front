@@ -22,22 +22,31 @@ class ImportProjectController
         'tgTrelloImportService',
         'tgJiraImportService',
         'tgGithubImportService',
+        'tgAsanaImportService',
         '$location',
         '$window',
     ]
 
-    constructor: (@trelloService, @jiraService, @githubService, @location, @window) ->
+    constructor: (@trelloService, @jiraService, @githubService, @asanaService, @location, @window) ->
 
     start: ->
         @.from = null
         trelloOauthToken = @location.search().oauth_verifier
         jiraOauthToken = @location.search().oauth_token
-        githubOauthToken = @location.search().code
         token = @location.search().token
 
         if token
             @.from = @location.search().from
-            @.token = token
+            if @.from == "asana"
+                @.token = JSON.parse(decodeURIComponent(token))
+            else
+                @.token = token
+
+        if @location.search().from == "github"
+            githubOauthToken = @location.search().code
+
+        if @location.search().from == "asana"
+            asanaOauthToken = @location.search().code
 
         if trelloOauthToken
             return @trelloService.authorize(trelloOauthToken).then (token) =>
@@ -51,6 +60,10 @@ class ImportProjectController
             return @githubService.authorize(githubOauthToken).then (token) =>
                 @location.search({from: "github", token: token})
 
+        if asanaOauthToken
+            return @asanaService.authorize(asanaOauthToken).then (token) =>
+                @location.search({from: "asana", token: encodeURIComponent(JSON.stringify(token))})
+
     select: (from) ->
         if from == "trello"
             @trelloService.getAuthUrl().then (url) =>
@@ -61,6 +74,10 @@ class ImportProjectController
         else if from == "github"
             callbackUri = @location.absUrl() + "?from=github"
             @githubService.getAuthUrl(callbackUri).then (url) =>
+                @window.open(url, "_self")
+        else if from == "asana"
+            callbackUri = @location.absUrl() + "?from=asana"
+            @asanaService.getAuthUrl(callbackUri).then (url) =>
                 @window.open(url, "_self")
         else
             @.from = from

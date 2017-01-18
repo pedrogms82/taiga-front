@@ -140,7 +140,45 @@ GithubResource = (urlsService, http) ->
 
 GithubResource.$inject = ["$tgUrls", "$tgHttp"]
 
+AsanaResource = (urlsService, http) ->
+    service = {}
+
+    service.getAuthUrl = (callbackUri) ->
+        url = urlsService.resolve("importers-asana-auth-url") + "?uri=" + callbackUri
+        return http.get(url)
+
+    service.authorize = (code) ->
+        url = urlsService.resolve("importers-asana-authorize")
+        return http.post(url, {code: code})
+
+    service.listProjects = (token) ->
+        url = urlsService.resolve("importers-asana-list-projects")
+        return http.post(url, {token: token}).then (response) -> Immutable.fromJS(response.data)
+
+    service.listUsers = (token, projectId) ->
+        url = urlsService.resolve("importers-asana-list-users")
+        return http.post(url, {token: token, project: projectId}).then (response) -> Immutable.fromJS(response.data)
+
+    service.importProject = (token, projectId, userBindings, keepExternalReference, isPrivate, projectType) ->
+        url = urlsService.resolve("importers-asana-import-project")
+
+        data = {
+            token: token,
+            project: projectId,
+            user_bindings: userBindings.toJS(),
+            keep_external_reference: keepExternalReference,
+            is_private: isPrivate,
+            template: projectType,
+        }
+        return http.post(url, data)
+
+    return () ->
+        return {"asanaImporter": service}
+
+AsanaResource.$inject = ["$tgUrls", "$tgHttp"]
+
 module = angular.module("taigaResources2")
 module.factory("tgTrelloImportResource", TrelloResource)
 module.factory("tgJiraImportResource", JiraResource)
 module.factory("tgGithubImportResource", GithubResource)
+module.factory("tgAsanaImportResource", AsanaResource)

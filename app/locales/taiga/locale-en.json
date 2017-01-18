@@ -1023,6 +1023,17 @@
                 "ISSUES_PROJECT": "As issues",
                 "ISSUES_PROJECT_DESCRIPTION": "You will not able to use your issues in kanban or scrum mode. You will be able to enable kanban or scrum for new user stories"
             },
+            "ASANA": {
+                "TITLE": "Asana",
+                "SELECTOR": "Import your Asana project and choose how to manage it",
+                "CHOOSE_BOARD": "Choose project that you want to import",
+                "KANBAN_PROJECT": "Kanban",
+                "SCRUM_PROJECT": "Scrum",
+                "CREATE_AS_SCRUM_DESCRIPTION": "The tasks and sub-tasks of your project will be created as Taiga user stories and tasks.",
+                "CREATE_AS_KANBAN_DESCRIPTION": "The tasks and sub-tasks of your project will be created as Taiga user stories and tasks.",
+                "PROJECT_MEMBERS": "Project Members",
+                "PROCESS_DESCRIPTION": "Match these Asana users with their user in Taiga so we can assign the tasks correctly"
+            },
             "JIRA": {
                 "TITLE": "Jira",
                 "CHOOSE_PROJECT": "Choose project or board that you want to import",

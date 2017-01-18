@@ -222,6 +222,12 @@ urls = {
     "importers-github-list-projects": "/importers/github/list_projects"
     "importers-github-list-users": "/importers/github/list_users"
     "importers-github-import-project": "/importers/github/import_project"
+
+    "importers-asana-auth-url": "/importers/asana/auth_url"
+    "importers-asana-authorize": "/importers/asana/authorize"
+    "importers-asana-list-projects": "/importers/asana/list_projects"
+    "importers-asana-list-users": "/importers/asana/list_users"
+    "importers-asana-import-project": "/importers/asana/import_project"
 }
 
 # Initialize api urls service

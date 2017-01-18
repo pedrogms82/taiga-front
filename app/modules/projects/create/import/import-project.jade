@@ -64,7 +64,19 @@
                     title="Github"
                 ) Github
                 p.import-project-description(translate="PROJECT.IMPORT.GITHUB.SELECTOR")
-        
+        li.import-project-from-site(ng-click="vm.select('asana')")
+            .import-project-logo
+                img(
+                    src="/#{v}/images/import-logos/asana.png"
+                    alt="Asana Logo"
+                )
+            .import-project-name-wrapper
+                a.import-project-name(
+                    href="#"
+                    title="Asana"
+                ) Asana
+                p.import-project-description(translate="PROJECT.IMPORT.ASANA.SELECTOR")
+
     .create-project-action
         button.trans-button.create-project-action-back(
             type="button"
@@ -83,5 +95,9 @@ tg-jira-import(
 )
 tg-github-import(
     ng-if="vm.from == 'github'"
+    on-cancel="vm.cancelImporter()"
+)
+tg-asana-import(
+    ng-if="vm.from == 'asana'"
     on-cancel="vm.cancelImporter()"
 )

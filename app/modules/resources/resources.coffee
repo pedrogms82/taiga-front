@@ -31,7 +31,8 @@ services = [
     "tgEpicsResource",
     "tgTrelloImportResource",
     "tgJiraImportResource",
-    "tgGithubImportResource"
+    "tgGithubImportResource",
+    "tgAsanaImportResource"
 ]
 
 Resources = ($injector) ->
