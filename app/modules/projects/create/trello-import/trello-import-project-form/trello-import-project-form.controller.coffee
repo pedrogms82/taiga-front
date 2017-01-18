@@ -28,8 +28,8 @@ class TrelloImportProjectFormController
 
         @.projectForm = @.project.toJS()
 
+        @.platformName = "Trello"
         @.projectForm.is_private = false
-        # @.projectForm.archived = false
         @.projectForm.keepExternalReference = false
 
     saveProjectDetails: (project) ->

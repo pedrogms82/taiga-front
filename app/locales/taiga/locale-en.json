@@ -986,6 +986,12 @@
             "WRITE_EMAIL_LABEL": "Write the email that their use in Taiga",
             "EMAIL_NOT_FOUND": "We did not find any users with that email",
             "ACCEEDE": "Acceede",
+            "PROJECT_MEMBERS": "Project Members",
+            "PROCESS_DESCRIPTION": "Match these {{platform}} users with their user in Taiga so we can assign the tasks correctly",
+            "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
+            "CHOOSE": "Select user",
+            "LINKS": "Links with {{platform}}",
+            "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original {{platform}} card?",
             "IN_PROGRESS": {
                 "TITLE": "Importing Project",
                 "DESCRIPTION": "This process can take a while, please keep the window open."
@@ -1001,20 +1007,12 @@
             "TRELLO": {
                 "TITLE": "Trello",
                 "SELECTOR": "Import your Trello boards into Taiga",
-                "CHOOSE_BOARD": "Choose board that you want to import",
-                "LINKS": "Links with Trello",
-                "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Trello card?",
-                "PROJECT_MEMBERS": "Project Members",
-                "PROCESS_DESCRIPTION": "Match these Trello users with their user in Taiga so we can assign the tasks correctly",
-                "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
-                "CHOOSE": "Select user"
+                "CHOOSE_BOARD": "Choose board that you want to import"
             },
             "GITHUB": {
                 "TITLE": "Github",
                 "SELECTOR": "Import your Github project issues",
                 "CHOOSE_BOARD": "Choose project that you want to import",
-                "LINKS": "Links with Github",
-                "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Github issue?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Match these Github users with their user in Taiga so we can assign the tasks correctly",
                 "HOW_DO_YOU_WANT_TO_IMPORT": "How do you want to import your issues into Taiga?",
@@ -1023,21 +1021,15 @@
                 "SCRUM_PROJECT": "As user stories in a scrum project",
                 "SCRUM_PROJECT_DESCRIPTION": "After that you can enable kanban mode.",
                 "ISSUES_PROJECT": "As issues",
-                "ISSUES_PROJECT_DESCRIPTION": "You will not able to use your issues in kanban or scrum mode. You will be able to enable kanban or scrum for new user stories",
-                "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
-                "CHOOSE": "Select user"
+                "ISSUES_PROJECT_DESCRIPTION": "You will not able to use your issues in kanban or scrum mode. You will be able to enable kanban or scrum for new user stories"
             },
             "JIRA": {
                 "TITLE": "Jira",
                 "CHOOSE_PROJECT": "Choose project or board that you want to import",
                 "SELECTOR": "Import your Jira project and choose how to manage it",
                 "URL": "Your Jira URL",
-                "LINKS": "Links with Jira",
-                "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Jira issue?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Match these Jira users with their user in Taiga so we can assign the tasks correctly",
-                "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
-                "CHOOSE": "Select user",
                 "KANBAN_PROJECT": "Kanban",
                 "SCRUM_PROJECT": "Scrum",
                 "ISSUES_PROJECT": "Issues",

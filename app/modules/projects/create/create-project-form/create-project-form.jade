@@ -6,7 +6,7 @@
         ng-if="vm.type == 'scrum'"
         translate="PROJECT.CREATE.TEMPLATE_SCRUM_DESC"
     )
-    
+
     h1.create-project-title(ng-if="vm.type == 'kanban'")
         tg-svg(svg-icon="icon-kanban")
         span(translate="PROJECT.CREATE.TEMPLATE_KANBAN")
@@ -16,77 +16,8 @@
     )
 
     form(ng-submit="vm.submit()")
-        fieldset
-            label(
-                translate="PROJECT.COMMON.DETAILS"
-                for="project-name"
-            )
-            input(
-                type="text"
-                ng-model="vm.projectForm.name"
-                placeholder="{{'PROJECT.COMMON.PROJECT_TITLE' | translate}}"
-                name="project-name"
-                data-required="true"
-                required
-            )
-        fieldset
-            textarea(
-                ng-model="vm.projectForm.description"
-                placeholder="{{'PROJECT.COMMON.PROJECT_DESCRIPTION' | translate}}"
-                data-required="true"
-                required
-            )
-        p(
-            ng-if="!vm.canCreatePrivateProjects"
-            translate="PROJECT.CREATE.MAX_PRIVATE_PROJECTS"
-        )
-
-        .create-project-privacity(role="group")
-            fieldset
-                input(
-                    type="radio"
-                    name="is_private"
-                    id="template-public"
-                    data-required="true"
-                    aria-hidden="true"
-                    ng-value="false"
-                    ng-model="vm.projectForm.is_private"
-                    required
-                    ng-disabled="!vm.canCreatePublicProjects"
-                    ng-checked="vm.canCreatePublicProjects"
-                )
-                label(for="template-public")
-                    tg-svg(svg-icon="icon-discover")
-                    span(translate="PROJECT.CREATE.PUBLIC_PROJECT")
-            fieldset
-                input(
-                    type="radio"
-                    name="is_private"
-                    id="template-private"
-                    data-required="true"
-                    ng-value="true"
-                    ng-model="vm.projectForm.is_private"
-                    aria-hidden="true"
-                    required
-                    ng-disabled="!vm.canCreatePrivateProjects"
-                    ng-checked="!vm.canCreatePublicProjects"
-                )
-                label(for="template-private")
-                    tg-svg(svg-icon="icon-lock")
-                    span(translate="PROJECT.CREATE.PRIVATE_PROJECT")
-
-        .create-project-action
-            button.trans-button.create-project-action-cancel(
-                type="button"
-                ng-click="vm.onCancel()"
-                title="{{'PROJECT.CREATE.BACK' | translate}}"
-                translate="PROJECT.CREATE.BACK"
-            )
-            button.button-green.create-project-action-submit(
-                tg-loading="vm.submiting"
-                type="submit"
-                ng-click="vm.saveProjectDetails(vm.projectForm)"
-                title="{{'PROJECT.CREATE.TITLE' | translate}}"
-                ng-disabled="!vm.projectForm.name || !vm.projectForm.description || vm.submiting"
-                translate="PROJECT.CREATE.TITLE"
-            )
+        div(ng-include="'projects/create/import-project-form-common/name.html'")
+        div(ng-include="'projects/create/import-project-form-common/description.html'")
+        div(ng-include="'projects/create/import-project-form-common/max-private-warning.html'")
+        div(ng-include="'projects/create/import-project-form-common/project-privacy.html'")
+        div(ng-include="'projects/create/import-project-form-common/actions.html'")

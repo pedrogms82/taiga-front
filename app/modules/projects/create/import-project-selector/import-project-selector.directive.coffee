@@ -14,22 +14,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: github-import-project-selector.directive.coffee
+# File: import-project-selector.directive.coffee
 ###
 
-GithubImportProjectSelectorDirective = () ->
+ImportProjectSelectorDirective = () ->
     return {
-        templateUrl:"projects/create/github-import/github-import-project-selector/github-import-project-selector.html",
-        controller: "GithubImportProjectSelectorCtrl",
+        templateUrl:"projects/create/import-project-selector/import-project-selector.html",
+        controller: "ImportProjectSelectorCtrl",
         controllerAs: "vm",
         bindToController: true,
         scope: {
             projects: '<',
             onCancel: '&',
-            onSelectProject: '&'
+            onSelectProject: '&',
+            platfrom: '@',
+            logo: '@',
+            search: '@'
         }
     }
 
-GithubImportProjectSelectorDirective.$inject = []
-
-angular.module("taigaProjects").directive("tgGithubImportProjectSelector", GithubImportProjectSelectorDirective)
+angular.module("taigaProjects").directive("tgImportProjectSelector", ImportProjectSelectorDirective)

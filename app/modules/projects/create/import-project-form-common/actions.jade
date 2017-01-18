@@ -1,0 +1,15 @@
+.create-project-action
+    button.trans-button.create-project-action-cancel(
+        type="button"
+        ng-click="vm.onCancelProjectDuplication()"
+        title="{{'PROJECT.CREATE.BACK' | translate}}"
+        translate="PROJECT.CREATE.BACK"
+    )
+    button.button-green.create-project-action-submit(
+        type="submit"
+        ng-click="vm.saveProjectDetails(vm.projectForm)"
+        ng-disabled="!vm.projectForm.name || !vm.projectForm.description || vm.submiting"
+        tg-loading="vm.loading"
+        translate="PROJECT.CREATE.TITLE"
+    )
+    // todo: in the normal form is submiting

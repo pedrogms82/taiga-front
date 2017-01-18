@@ -28,8 +28,8 @@ class GithubImportProjectFormController
 
         @.projectForm = @.project.toJS()
 
+        @.platformName = "Github"
         @.projectForm.is_private = false
-        # @.projectForm.archived = false
         @.projectForm.keepExternalReference = false
         @.projectForm.project_type = "kanban"
 

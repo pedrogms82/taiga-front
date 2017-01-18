@@ -14,10 +14,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: trello-import-project-members.controller.coffee
+# File: import-project-members.controller.coffee
 ###
 
-class TrelloImportProjectMembersController
+class ImportProjectMembersController
     constructor: () ->
         @.selectImportUserLightbox = false
         @.warningImportUsers = false
@@ -34,12 +34,12 @@ class TrelloImportProjectMembersController
         else
             @.submit()
 
-    confirmUser: (trelloUser, taigaUser) ->
+    confirmUser: (user, taigaUser) ->
         @.selectImportUserLightbox = false
 
         user = Immutable.Map()
 
-        user = user.set('trelloUser', trelloUser)
+        user = user.set('user', user)
         user = user.set('taigaUser', taigaUser)
 
         @.selectedUsers = @.selectedUsers.push(user)
@@ -49,7 +49,7 @@ class TrelloImportProjectMembersController
 
     getSelectedMember: (member) ->
         return @.selectedUsers.find (it) ->
-            return it.getIn(['trelloUser', 'id']) == member.get('id')
+            return it.getIn(['user', 'id']) == member.get('id')
 
     isMemberSelected: (member) ->
         return !!@.getSelectedMember(member)
@@ -71,8 +71,8 @@ class TrelloImportProjectMembersController
         users = Immutable.Map()
 
         @.selectedUsers.map (it) ->
-            users = users.set(it.getIn(['trelloUser', 'id']), it.getIn(['taigaUser', 'id']))
+            users = users.set(it.getIn(['user', 'id']), it.getIn(['taigaUser', 'id']))
 
         @.onSubmit({users: users})
 
-angular.module('taigaProjects').controller('TrelloImportProjectMembersCtrl', TrelloImportProjectMembersController)
+angular.module('taigaProjects').controller('ImportProjectMembersCtrl', ImportProjectMembersController)

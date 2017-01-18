@@ -14,10 +14,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: jira-import.controller.spec.coffee
+# File: import.controller.spec.coffee
 ###
 
-describe "JiraImportProjectMembersCtrl", ->
+describe "ImportProjectMembersCtrl", ->
     $provide = null
     $controller = null
     mocks = {}
@@ -35,7 +35,7 @@ describe "JiraImportProjectMembersCtrl", ->
         _setup()
 
     it "search user", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
         user = {
             id: 1,
@@ -48,7 +48,7 @@ describe "JiraImportProjectMembersCtrl", ->
         expect(ctrl.searchingUser).to.be.equal(user)
 
     it "prepare submit users, warning if needed", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
         user = {
             id: 1,
@@ -69,7 +69,7 @@ describe "JiraImportProjectMembersCtrl", ->
         expect(ctrl.warningImportUsers).to.be.true
 
     it "prepare submit users, submit", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
         user = {
             id: 1,
@@ -92,17 +92,17 @@ describe "JiraImportProjectMembersCtrl", ->
         expect(ctrl.submit).have.been.called
 
     it "confirm user", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
-        ctrl.confirmUser('jira-user', 'taiga-user')
+        ctrl.confirmUser('user', 'taiga-user')
 
         expect(ctrl.selectedUsers.size).to.be.equal(1)
 
-        expect(ctrl.selectedUsers.get(0).get('jiraUser')).to.be.equal('jira-user')
+        expect(ctrl.selectedUsers.get(0).get('user')).to.be.equal('user')
         expect(ctrl.selectedUsers.get(0).get('taigaUser')).to.be.equal('taiga-user')
 
     it "clean user", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
         ctrl.cleanUser(Immutable.fromJS({
             id: 3
@@ -111,28 +111,28 @@ describe "JiraImportProjectMembersCtrl", ->
         expect(ctrl.cancelledUsers.get(0)).to.be.equal(3)
 
     it "get a selected member", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
         member = Immutable.fromJS({
             id: 3
         })
 
         ctrl.selectedUsers = ctrl.selectedUsers.push(Immutable.fromJS({
-            jiraUser: {
+            user: {
                 id: 3
             }
         }))
 
         user = ctrl.getSelectedMember(member)
 
-        expect(user.getIn(['jiraUser', 'id'])).to.be.equal(3)
+        expect(user.getIn(['user', 'id'])).to.be.equal(3)
 
     it "submit", () ->
-        ctrl = $controller("JiraImportProjectMembersCtrl")
+        ctrl = $controller("ImportProjectMembersCtrl")
 
 
         ctrl.selectedUsers = ctrl.selectedUsers.push(Immutable.fromJS({
-            jiraUser: {
+            user: {
                 id: 3
             },
             taigaUser: {

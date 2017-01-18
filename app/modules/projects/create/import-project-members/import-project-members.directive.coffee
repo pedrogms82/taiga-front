@@ -14,22 +14,24 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: jira-import-project-selector.directive.coffee
+# File: import-project-form.directive.coffee
 ###
 
-JiraImportProjectSelectorDirective = () ->
+ImportProjectMembersDirective = () ->
     return {
-        templateUrl:"projects/create/jira-import/jira-import-project-selector/jira-import-project-selector.html",
-        controller: "JiraImportProjectSelectorCtrl",
+        templateUrl:"projects/create/import-project-members/import-project-members.html",
+        controller: "ImportProjectMembersCtrl",
         controllerAs: "vm",
         bindToController: true,
         scope: {
-            projects: '<',
-            onCancel: '&',
-            onSelectProject: '&'
+            members: '<',
+            project: '<',
+            onSubmit: '&',
+            platform: '@',
+            logo: '@'
         }
     }
 
-JiraImportProjectSelectorDirective.$inject = []
+ImportProjectMembersDirective.$inject = []
 
-angular.module("taigaProjects").directive("tgJiraImportProjectSelector", JiraImportProjectSelectorDirective)
+angular.module("taigaProjects").directive("tgImportProjectMembers", ImportProjectMembersDirective)

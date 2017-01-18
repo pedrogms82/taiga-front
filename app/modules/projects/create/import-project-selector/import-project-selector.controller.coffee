@@ -14,11 +14,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: github-import-project-selector.controller.coffee
+# File: import-project-selector.controller.coffee
 ###
 
-class GithubImportProjectSelectorController
+class ImportProjectSelectorController
     selectProject: (project) ->
         @.onSelectProject({project: Immutable.fromJS(project)})
 
-angular.module('taigaProjects').controller('GithubImportProjectSelectorCtrl', GithubImportProjectSelectorController)
+angular.module('taigaProjects').controller('ImportProjectSelectorCtrl', ImportProjectSelectorController)
