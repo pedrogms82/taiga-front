@@ -14,18 +14,7 @@
                     title="Taiga"
                 ) Taiga
                 p.import-project-description(translate="PROJECT.IMPORT.TAIGA.SELECTOR")
-        li.import-project-from-site(ng-click="vm.select('trello')")
-            .import-project-logo
-                img(
-                    src="/#{v}/images/import-logos/trello.png"
-                    alt="Trello Logo"
-                )
-            .import-project-name-wrapper
-                a.import-project-name(
-                    href="#"
-                    title="Trello"
-                ) Trello
-                p.import-project-description(translate="PROJECT.IMPORT.TRELLO.SELECTOR")
+        
         li.import-project-from-site(ng-click="vm.unfoldOptions('jira')")
             .import-project-logo
                 img(
@@ -64,6 +53,18 @@
                     title="Github"
                 ) Github
                 p.import-project-description(translate="PROJECT.IMPORT.GITHUB.SELECTOR")
+        li.import-project-from-site(ng-click="vm.select('trello')")
+            .import-project-logo
+                img(
+                    src="/#{v}/images/import-logos/trello.png"
+                    alt="Trello Logo"
+                )
+            .import-project-name-wrapper
+                a.import-project-name(
+                    href="#"
+                    title="Trello"
+                ) Trello
+                p.import-project-description(translate="PROJECT.IMPORT.TRELLO.SELECTOR")
         li.import-project-from-site(ng-click="vm.select('asana')")
             .import-project-logo
                 img(

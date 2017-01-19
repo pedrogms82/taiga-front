@@ -3,17 +3,13 @@
     max-width: 800px;
 
     .import-project-selector {
-        display: flex;
 
         &-service {
             img {
-                padding-right: 1rem;
+                margin: 1rem auto;
                 width: 4rem;
+                display: block;
             }
-        }
-
-        &-boards {
-            flex: 1;
         }
 
         &-filter {
