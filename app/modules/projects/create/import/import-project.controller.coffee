@@ -90,6 +90,6 @@ class ImportProjectController
         @location.search({})
 
     cancelImport: () ->
-        @.onCancel()
+        @.onCancelProjectCreation()
 
 angular.module("taigaProjects").controller("ImportProjectCtrl", ImportProjectController)

@@ -32,7 +32,7 @@ class DuplicateProjectController
         @.user = @currentUserService.getUser()
         @.canCreatePublicProjects = @currentUserService.canCreatePublicProjects()
         @.canCreatePrivateProjects = @currentUserService.canCreatePrivateProjects()
-        @.duplicatedProject = {}
+        @.projectForm = {}
 
     getReferenceProject: (slug) ->
         @projectsService.getProjectBySlug(slug).then (project) =>
@@ -48,7 +48,7 @@ class DuplicateProjectController
         @.checkUsersLimit(@.invitedMembers)
 
     setInvitedMembers: (members) ->
-        @.duplicatedProject.users = members.map (member) =>
+        @.projectForm.users = members.map (member) =>
             member.get('id')
         @.checkUsersLimit(members)
 
@@ -56,20 +56,23 @@ class DuplicateProjectController
         size = members.size
         @.limitMembersPrivateProject = undefined
         @.limitMembersPublicProject = undefined
-        if @.duplicatedProject.is_private
+        if @.projectForm.is_private
             @.limitMembersPublicProject = false
             @.limitMembersPrivateProject = @.user.get('max_memberships_private_projects') < size
-        else if !@.duplicatedProject.is_private && @.user.get('max_memberships_public_projects')
+        else if !@.projectForm.is_private && @.user.get('max_memberships_public_projects')
             @.limitMembersPrivateProject = false
             @.limitMembersPublicProject = @.user.get('max_memberships_public_projects') < size
 
-    onDuplicateProject: () ->
+    saveProjectDetails: () ->
         projectId = @.referenceProject.get('id')
-        data = @.duplicatedProject
+        data = @.projectForm
         @.loading = true
         @projectsService.duplicate(projectId, data).then (newProject) =>
             @.loading = false
             @location.path(@urlservice.resolve("project", {project: newProject.data.slug}))
             @currentUserService.loadProjects()
+
+    isDisabled: () ->
+        return !@.projectForm.description || !@.referenceProject || @.loading || @.limitMembersPrivateProject || @.limitMembersPublicProject
 
 angular.module("taigaProjects").controller("DuplicateProjectCtrl", DuplicateProjectController)

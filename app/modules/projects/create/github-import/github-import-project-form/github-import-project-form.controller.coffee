@@ -36,4 +36,7 @@ class GithubImportProjectFormController
     saveProjectDetails: (project) ->
         @.onSaveProjectDetails({project: Immutable.fromJS(project)})
 
+    isDisabled: () ->
+        return !@.projectForm.name || !@.projectForm.description || @.loading
+
 angular.module('taigaProjects').controller('GithubImportProjectFormCtrl', GithubImportProjectFormController)

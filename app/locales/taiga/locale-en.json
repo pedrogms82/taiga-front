@@ -961,8 +961,6 @@
             "DESCRIPTION": "Start clean and keep your configuration",
             "SELECT_PLACEHOLDER": "Choose an existing project to duplicate",
             "DETAILS": "New project details",
-            "PROJECT_TITLE": "Project Name",
-            "PROJECT_DESCRIPTION": "Project Description",
             "CREATE_PROJECT_TEXT": "Fresh and clean. So exciting!",
             "CHOOSE_TEMPLATE_TITLE": "More info about project templates",
             "CHOOSE_TEMPLATE_INFO": "More info",

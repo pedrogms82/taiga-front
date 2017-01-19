@@ -28,7 +28,7 @@ DuplicateProjectDirective = () ->
         controllerAs: "vm",
         bindToController: true,
         scope: {
-            onCancelProjectDuplication: '&'
+            onCancelProjectCreation: '&'
         }
     }
 
