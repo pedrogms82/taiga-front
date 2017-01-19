@@ -73,6 +73,7 @@ describe "ImportProjectCtrl", ->
         module (_$provide_) ->
             $provide = _$provide_
 
+            _mockGithubImportService()
             _mockTrelloImportService()
             _mockJiraImportService()
             _mockAsanaImportService()
@@ -129,7 +130,8 @@ describe "ImportProjectCtrl", ->
     it "initialize form with github", (done) ->
         searchResult = {
             code: 123,
-            token: "token"
+            token: "token",
+            from: "github"
         }
 
         mocks.location.search.returns(searchResult)
@@ -144,8 +146,9 @@ describe "ImportProjectCtrl", ->
 
     it "initialize form with asana", (done) ->
         searchResult = {
-            asana_code: 123,
-            token: "token"
+            code: 123,
+            token: encodeURIComponent("{\"token\": 222}")
+            from: "asana"
         }
 
         mocks.location.search.returns(searchResult)
@@ -153,8 +156,8 @@ describe "ImportProjectCtrl", ->
 
         ctrl = $controller("ImportProjectCtrl")
         ctrl.start().then () ->
-            expect(ctrl.token).to.be.equal("token")
-            expect(mocks.location.search).have.been.calledWith({from: "asana", token: "token2"})
+            expect(ctrl.token).to.be.eql({"token": 222})
+            expect(mocks.location.search).have.been.calledWith({from: "asana", token: encodeURIComponent(JSON.stringify("token2"))})
 
             done()
 

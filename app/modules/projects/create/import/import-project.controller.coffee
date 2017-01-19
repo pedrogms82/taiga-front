@@ -31,22 +31,25 @@ class ImportProjectController
 
     start: ->
         @.from = null
-        trelloOauthToken = @location.search().oauth_verifier
-        jiraOauthToken = @location.search().oauth_token
-        token = @location.search().token
+        locationSearch = @location.search()
+
+        trelloOauthToken = locationSearch.oauth_verifier
+        jiraOauthToken = locationSearch.oauth_token
+        token = locationSearch.token
 
         if token
-            @.from = @location.search().from
+            @.from = locationSearch.from
+
             if @.from == "asana"
                 @.token = JSON.parse(decodeURIComponent(token))
             else
                 @.token = token
 
-        if @location.search().from == "github"
-            githubOauthToken = @location.search().code
+        if @.from == "github"
+            githubOauthToken = locationSearch.code
 
-        if @location.search().from == "asana"
-            asanaOauthToken = @location.search().code
+        if @.from == "asana"
+            asanaOauthToken = locationSearch.code
 
         if trelloOauthToken
             return @trelloService.authorize(trelloOauthToken).then (token) =>

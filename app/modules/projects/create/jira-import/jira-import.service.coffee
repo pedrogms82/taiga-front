@@ -43,7 +43,6 @@ class JiraImportService extends taiga.Service
 
     getAuthUrl: (url) ->
         return new Promise (resolve) =>
-            console.log(@resources)
             @resources.jiraImporter.getAuthUrl(url).then (response) =>
                 @.authUrl = response.data.url
                 resolve(@.authUrl)

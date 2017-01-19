@@ -88,7 +88,7 @@ describe "DuplicateProjectController", ->
 
         ctrl.canCreatePublicProjects = mocks.currentUserService.canCreatePublicProjects()
         ctrl.canCreatePrivateProjects = mocks.currentUserService.canCreatePublicProjects()
-        ctrl.duplicatedProject = {}
+        ctrl.projectForm = {}
 
     it "get project to duplicate", () ->
 
@@ -134,7 +134,7 @@ describe "DuplicateProjectController", ->
         expect(ctrl.checkUsersLimit).to.be.calledWith(ctrl.invitedMembers)
 
     it 'set Invited members', () ->
-        ctrl.duplicatedProject = {}
+        ctrl.projectForm = {}
         members = Immutable.fromJS([
             {id: 1},
             {id: 2},
@@ -145,7 +145,7 @@ describe "DuplicateProjectController", ->
         ctrl.checkUsersLimit = sinon.spy()
 
         ctrl.setInvitedMembers(members)
-        expect(ctrl.duplicatedProject.users).to.be.eql(membersList)
+        expect(ctrl.projectForm.users).to.be.eql(membersList)
         expect(ctrl.checkUsersLimit).to.be.calledWith(members)
 
     it 'user can invite more members in private project', () ->
@@ -161,8 +161,8 @@ describe "DuplicateProjectController", ->
             max_memberships_private_projects: 100
         })
 
-        ctrl.duplicatedProject = {}
-        ctrl.duplicatedProject.is_private = true
+        ctrl.projectForm = {}
+        ctrl.projectForm.is_private = true
 
         ctrl.checkUsersLimit(members)
         expect(ctrl.limitMembersPublicProject).to.be.false
@@ -181,8 +181,8 @@ describe "DuplicateProjectController", ->
             max_memberships_private_projects: 1
         })
 
-        ctrl.duplicatedProject = {}
-        ctrl.duplicatedProject.is_private = true
+        ctrl.projectForm = {}
+        ctrl.projectForm.is_private = true
 
         ctrl.checkUsersLimit(members)
         expect(ctrl.limitMembersPublicProject).to.be.false
@@ -201,8 +201,8 @@ describe "DuplicateProjectController", ->
             max_memberships_private_projects: 100
         })
 
-        ctrl.duplicatedProject = {}
-        ctrl.duplicatedProject.is_private = false
+        ctrl.projectForm = {}
+        ctrl.projectForm.is_private = false
 
         ctrl.checkUsersLimit(members)
         expect(ctrl.limitMembersPrivateProject).to.be.false
@@ -221,8 +221,8 @@ describe "DuplicateProjectController", ->
             max_memberships_private_projects: 1
         })
 
-        ctrl.duplicatedProject = {}
-        ctrl.duplicatedProject.is_private = false
+        ctrl.projectForm = {}
+        ctrl.projectForm.is_private = false
 
         ctrl.checkUsersLimit(members)
         expect(ctrl.limitMembersPrivateProject).to.be.false
@@ -233,11 +233,11 @@ describe "DuplicateProjectController", ->
         ctrl.referenceProject = Immutable.fromJS({
             id: 1
         })
-        ctrl.duplicatedProject = Immutable.fromJS({
+        ctrl.projectForm = Immutable.fromJS({
             id: 1
         })
         projectId = ctrl.referenceProject.get('id')
-        data = ctrl.duplicatedProject
+        data = ctrl.projectForm
 
         newProject = {}
         newProject.data = {
@@ -248,7 +248,7 @@ describe "DuplicateProjectController", ->
 
         promise = mocks.projectsService.duplicate.withArgs(projectId, data).promise().resolve(newProject)
 
-        ctrl.onDuplicateProject().then () ->
+        ctrl.saveProjectDetails().then () ->
             expect(ctrl.loading).to.be.false
             expect(mocks.location.path).to.be.calledWith("/project/slug/")
             expect(mocks.currentUserService.loadProjects).to.have.been.called

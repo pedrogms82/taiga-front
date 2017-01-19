@@ -41,6 +41,7 @@ describe "tgAsanaImportService", ->
         }
 
         mocks.location.search.returns({
+            from: 'asana'
             token: 123
         })
 

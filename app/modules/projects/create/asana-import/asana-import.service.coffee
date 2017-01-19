@@ -43,7 +43,6 @@ class AsanaImportService extends taiga.Service
                 resolve(@.importedProject)
 
     getAuthUrl: (callbackUri) ->
-        console.log(@resources)
         return new Promise (resolve) =>
             @resources.asanaImporter.getAuthUrl(callbackUri).then (response) =>
                 @.authUrl = response.data.url

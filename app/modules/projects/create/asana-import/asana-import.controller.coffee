@@ -42,7 +42,7 @@ class AsanaImportController
         @asanaImportService.fetchUsers(@.project.get('id'))
 
     startImport: (users) ->
-        loader = @confirm.loader('sdfdsfdsfjk dfksj')
+        loader = @confirm.loader(@translate.instant('PROJECT.IMPORT.IN_PROGRESS.TITLE'))
 
         loader.start()
         loader.update('', @translate.instant('PROJECT.IMPORT.IN_PROGRESS.TITLE'), @translate.instant('PROJECT.IMPORT.IN_PROGRESS.DESCRIPTION'))

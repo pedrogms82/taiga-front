@@ -34,12 +34,12 @@ class ImportProjectMembersController
         else
             @.submit()
 
-    confirmUser: (user, taigaUser) ->
+    confirmUser: (externalUser, taigaUser) ->
         @.selectImportUserLightbox = false
 
         user = Immutable.Map()
 
-        user = user.set('user', user)
+        user = user.set('user', externalUser)
         user = user.set('taigaUser', taigaUser)
 
         @.selectedUsers = @.selectedUsers.push(user)
