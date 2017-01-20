@@ -33,8 +33,8 @@ class GithubImportProjectFormController
         @.projectForm.keepExternalReference = false
         @.projectForm.project_type = "kanban"
 
-    saveProjectDetails: (project) ->
-        @.onSaveProjectDetails({project: Immutable.fromJS(project)})
+    saveForm: () ->
+        @.onSaveProjectDetails({project: Immutable.fromJS(@.projectForm)})
 
     isDisabled: () ->
         return !@.projectForm.name || !@.projectForm.description || @.loading

@@ -25,43 +25,45 @@ class ImportProjectController
         'tgAsanaImportService',
         '$location',
         '$window',
+        '$routeParams',
+        '$tgNavUrls'
     ]
 
-    constructor: (@trelloService, @jiraService, @githubService, @asanaService, @location, @window) ->
+    constructor: (@trelloService, @jiraService, @githubService, @asanaService, @location, @window, @routeParams, @tgNavUrls) ->
 
     start: ->
-        @.from = null
+        @.token = null
+        @.from = @routeParams.platform
+
         locationSearch = @location.search()
 
-        trelloOauthToken = locationSearch.oauth_verifier
         jiraOauthToken = locationSearch.oauth_token
-        token = locationSearch.token
 
-        if token
-            @.from = locationSearch.from
-
-            if @.from == "asana"
-                @.token = JSON.parse(decodeURIComponent(token))
-            else
-                @.token = token
-
-        if @.from == "github"
-            githubOauthToken = locationSearch.code
+        if @.from == "asana"
+            @.token = JSON.parse(decodeURIComponent(token))
 
         if @.from == "asana"
             asanaOauthToken = locationSearch.code
 
-        if trelloOauthToken
-            return @trelloService.authorize(trelloOauthToken).then (token) =>
-                @location.search({from: "trello", token: token})
+        if @.from  == 'trello'
+            if locationSearch.oauth_verifier
+                trelloOauthToken = locationSearch.oauth_verifier
+                return @trelloService.authorize(trelloOauthToken).then (token) => @location.search({token: token})
+            else if locationSearch.token
+                @.token = locationSearch.token
+                @trelloService.setToken(locationSearch.token)
+
+        if @.from == "github"
+            if locationSearch.code
+                githubOauthToken = locationSearch.code
+                return @githubService.authorize(githubOauthToken).then (token) => @location.search({token: token})
+            else if locationSearch.token
+                @.token = locationSearch.token
+                @githubService.setToken(locationSearch.token)
 
         if jiraOauthToken
             return @jiraService.authorize().then (data) =>
                 @location.search({from: "jira", token: data.token, url: data.url})
-
-        if githubOauthToken
-            return @githubService.authorize(githubOauthToken).then (token) =>
-                @location.search({from: "github", token: token})
 
         if asanaOauthToken
             return @asanaService.authorize(asanaOauthToken).then (token) =>
@@ -75,7 +77,7 @@ class ImportProjectController
             @jiraService.getAuthUrl(@.jiraUrl).then (url) =>
                 @window.open(url, "_self")
         else if from == "github"
-            callbackUri = @location.absUrl() + "?from=github"
+            callbackUri = @location.absUrl() + "/github"
             @githubService.getAuthUrl(callbackUri).then (url) =>
                 @window.open(url, "_self")
         else if from == "asana"
@@ -88,11 +90,7 @@ class ImportProjectController
     unfoldOptions: (options) ->
         @.unfoldedOptions = options
 
-    cancelImporter: () ->
-        @.from = null
-        @location.search({})
-
-    cancelImport: () ->
-        @.onCancelProjectCreation()
+    cancelCurrentImport: () ->
+        @location.url(@tgNavUrls.resolve('create-project-import'))
 
 angular.module("taigaProjects").controller("ImportProjectCtrl", ImportProjectController)

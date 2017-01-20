@@ -19,17 +19,14 @@
 
 class TrelloImportController
     constructor: (@trelloImportService, @confirm, @translate, @projectUrl, @location) ->
-        @.step = 'autorization-trello'
         @.project = null
         taiga.defineImmutableProperty @, 'projects', () => return @trelloImportService.projects
         taiga.defineImmutableProperty @, 'members', () => return @trelloImportService.projectUsers
 
-         #@.step = 'project-members-trello'
         @.startProjectSelector()
 
     startProjectSelector: () ->
-        @.step = 'project-select-trello'
-        @trelloImportService.fetchProjects()
+        @trelloImportService.fetchProjects().then () => @.step = 'project-select-trello'
 
     onSelectProject: (project) ->
         @.step = 'project-form-trello'

@@ -107,7 +107,7 @@
     }
 
     &-selector {
-        li {
+        a {
             align-items: center;
             border-bottom: 1px solid $whitish;
             color: $grayer;
@@ -115,7 +115,8 @@
             display: flex;
             justify-content: center;
             position: relative;
-
+        }
+        li {
             &:hover {
                 background: rgba($primary, .1);
                 transition: background 0.3s ease-in;
@@ -213,6 +214,21 @@
 
         &-back {
             width: 10%;
+        }
+    }
+    &-warning {
+        @include font-size(small);
+        padding: 1rem;
+        text-align: center;
+        .icon-exclamation {
+            fill: $red-light;
+            margin-right: .5rem;
+            vertical-align: middle;
+        }
+        a {
+            color: $primary;
+            display: inline-block;
+            margin-left: .25rem;
         }
     }
 }

@@ -32,8 +32,8 @@ class TrelloImportProjectFormController
         @.projectForm.is_private = false
         @.projectForm.keepExternalReference = false
 
-    saveProjectDetails: (project) ->
-        @.onSaveProjectDetails({project: Immutable.fromJS(project)})
+    saveForm: () ->
+        @.onSaveProjectDetails({project: Immutable.fromJS(@.projectForm)})
 
     isDisabled: () ->
         return !@.projectForm.name || !@.projectForm.description || @.loading

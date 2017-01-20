@@ -19,14 +19,15 @@
 
 class GithubImportService extends taiga.Service
     @.$inject = [
-        'tgResources',
-        '$location'
+        'tgResources'
     ]
 
     constructor: (@resources, @location) ->
         @.projects = Immutable.List()
         @.projectUsers = Immutable.List()
-        @.token = @location.search().token
+
+    setToken: (token) ->
+        @.token = token
 
     fetchProjects: () ->
         @resources.githubImporter.listProjects(@.token).then (projects) => @.projects = projects

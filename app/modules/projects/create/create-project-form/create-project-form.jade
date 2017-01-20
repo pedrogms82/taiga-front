@@ -18,6 +18,11 @@
     form(ng-submit="vm.submit()")
         div(ng-include="'projects/create/import-project-form-common/name.html'")
         div(ng-include="'projects/create/import-project-form-common/description.html'")
-        div(ng-include="'projects/create/import-project-form-common/max-private-warning.html'")
         div(ng-include="'projects/create/import-project-form-common/project-privacy.html'")
+
+        tg-create-project-restrictions(
+            can-create-public-projects="vm.canCreatePublicProjects"
+            can-create-private-projects="vm.canCreatePrivateProjects"
+        )
+
         div(ng-include="'projects/create/import-project-form-common/actions.html'")

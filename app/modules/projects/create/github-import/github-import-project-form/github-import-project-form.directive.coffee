@@ -26,6 +26,7 @@ GithubImportProjectFormDirective = () ->
         scope: {
             project: '<',
             onSaveProjectDetails: '&'
+            onCancelForm: '&'
         }
     }
 

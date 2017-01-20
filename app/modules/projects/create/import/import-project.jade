@@ -3,18 +3,21 @@
 
     ul.import-project-from
         li.import-project-from-site
-            .import-project-logo
-                img(
-                    src="/#{v}/images/logo-color.png"
-                    alt="Taiga Logo"
-                )
-            .import-project-name-wrapper
-                a.import-project-name(
-                    href="#"
-                    title="Taiga"
-                ) Taiga
-                p.import-project-description(translate="PROJECT.IMPORT.TAIGA.SELECTOR")
-        
+            a(
+                tg-nav="create-project-import-platform,platform='taiga'"
+            )
+                .import-project-logo
+                    img(
+                        src="/#{v}/images/logo-color.png"
+                        alt="Taiga Logo"
+                    )
+                .import-project-name-wrapper
+                    p.import-project-name(
+                        href="#"
+                        title="Taiga"
+                    ) Taiga
+                    p.import-project-description(translate="PROJECT.IMPORT.TAIGA.SELECTOR")
+
         li.import-project-from-site(ng-click="vm.unfoldOptions('jira')")
             .import-project-logo
                 img(
@@ -79,26 +82,25 @@
                 p.import-project-description(translate="PROJECT.IMPORT.ASANA.SELECTOR")
 
     .create-project-action
-        button.trans-button.create-project-action-back(
-            type="button"
-            ng-click="vm.cancelImport()"
+        a.trans-button.create-project-action-back(
+            tg-nav="create-project",
             title="{{'PROJECT.CREATE.BACK' | translate}}"
             translate="PROJECT.CREATE.BACK"
         )
 
 tg-trello-import(
-    ng-if="vm.from == 'trello'"
-    on-cancel="vm.cancelImporter()"
+    ng-if="vm.from == 'trello' && vm.token"
+    on-cancel="vm.cancelCurrentImport()"
 )
 tg-jira-import(
     ng-if="vm.from == 'jira'"
-    on-cancel="vm.cancelImporter()"
+    on-cancel="vm.cancelCurrentImport()"
 )
 tg-github-import(
-    ng-if="vm.from == 'github'"
-    on-cancel="vm.cancelImporter()"
+    ng-if="vm.from == 'github' && vm.token"
+    on-cancel="vm.cancelCurrentImport()"
 )
 tg-asana-import(
     ng-if="vm.from == 'asana'"
-    on-cancel="vm.cancelImporter()"
+    on-cancel="vm.cancelCurrentImport()"
 )

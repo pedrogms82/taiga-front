@@ -1,10 +1,9 @@
 .import-project-trello-form.create-project
     div(ng-include="'projects/create/import/import-header.html'")
 
-    form
+    form(ng-submit="vm.saveForm()")
         div(ng-include="'projects/create/import-project-form-common/name.html'")
         div(ng-include="'projects/create/import-project-form-common/description.html'")
-        div(ng-include="'projects/create/import-project-form-common/max-private-warning.html'")
         div(ng-include="'projects/create/import-project-form-common/project-privacy.html'")
         div(ng-include="'projects/create/import-project-form-common/links.html'")
         div(ng-include="'projects/create/import-project-form-common/actions.html'")

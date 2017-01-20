@@ -22,10 +22,11 @@ class CreatetProjectFormController
         "tgCurrentUserService",
         "tgProjectsService",
         "$projectUrl",
-        "$location"
+        "$location",
+        "$tgNavUrls"
    ]
 
-    constructor: (@currentUserService, @projectsService, @projectUrl, @location) ->
+    constructor: (@currentUserService, @projectsService, @projectUrl, @location, @navUrls) ->
         @.projectForm = {
             is_private: false
         }
@@ -39,9 +40,12 @@ class CreatetProjectFormController
             @.projectForm.creation_template = 2
 
     submit: () ->
-        @.submiting = true
+        @.formSubmitLoading = true
 
         @projectsService.create(@.projectForm).then (project) =>
             @location.url(@projectUrl.get(project))
+
+    onCancelForm: () ->
+        @location.path(@navUrls.resolve("create-project"))
 
 angular.module('taigaProjects').controller('CreateProjectFormCtrl', CreatetProjectFormController)

@@ -14,6 +14,7 @@ tg-import-project-selector(
 tg-github-import-project-form(
     project="vm.project"
     on-save-project-details="vm.onSaveProjectDetails(project)"
+    on-cancel-form="vm.step = 'project-select-github'"
     ng-if="vm.step == 'project-form-github'"
 )
 

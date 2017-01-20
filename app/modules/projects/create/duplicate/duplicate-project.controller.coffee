@@ -25,13 +25,15 @@ class DuplicateProjectController
         "$tgNavUrls"
     ]
 
-    constructor: (@currentUserService, @projectsService, @location, @urlservice) ->
+    constructor: (@currentUserService, @projectsService, @location, @navUrls) ->
         allProjects = @currentUserService.projects.get("all")
         @.projects = allProjects.filter (project) =>
             !project.get('blocked_code')
         @.user = @currentUserService.getUser()
+
         @.canCreatePublicProjects = @currentUserService.canCreatePublicProjects()
         @.canCreatePrivateProjects = @currentUserService.canCreatePrivateProjects()
+
         @.projectForm = {}
 
     getReferenceProject: (slug) ->
@@ -63,16 +65,19 @@ class DuplicateProjectController
             @.limitMembersPrivateProject = false
             @.limitMembersPublicProject = @.user.get('max_memberships_public_projects') < size
 
-    saveProjectDetails: () ->
+    submit: () ->
         projectId = @.referenceProject.get('id')
         data = @.projectForm
-        @.loading = true
+        @.formSubmitLoading = true
         @projectsService.duplicate(projectId, data).then (newProject) =>
-            @.loading = false
-            @location.path(@urlservice.resolve("project", {project: newProject.data.slug}))
+            @.formSubmitLoading = false
+            @location.path(@navUrls.resolve("project", {project: newProject.data.slug}))
             @currentUserService.loadProjects()
 
     isDisabled: () ->
         return !@.projectForm.description || !@.referenceProject || @.loading || @.limitMembersPrivateProject || @.limitMembersPublicProject
+
+    onCancelForm: () ->
+        @location.path(@navUrls.resolve("create-project"))
 
 angular.module("taigaProjects").controller("DuplicateProjectCtrl", DuplicateProjectController)

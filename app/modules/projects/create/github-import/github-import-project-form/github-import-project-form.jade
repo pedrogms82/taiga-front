@@ -1,10 +1,9 @@
 .import-project-github-form
     div(ng-include="'projects/create/import/import-header.html'")
 
-    form
+    form(ng-submit="vm.saveForm()")
         div(ng-include="'projects/create/import-project-form-common/name.html'")
         div(ng-include="'projects/create/import-project-form-common/description.html'")
-        div(ng-include="'projects/create/import-project-form-common/max-private-warning.html'")
 
         .create-project-github-import-type(role="group")
             p.question(translate="PROJECT.IMPORT.GITHUB.HOW_DO_YOU_WANT_TO_IMPORT")

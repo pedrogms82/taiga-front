@@ -1,7 +1,7 @@
 .create-project
     h1.create-project-title(translate="PROJECT.DUPLICATE.TITLE")
     h3.create-project-description(translate="PROJECT.DUPLICATE.DESCRIPTION")
-    form.duplicate-project.e2e-duplicate-project
+    form.duplicate-project.e2e-duplicate-project(ng-submit="vm.submit()")
         fieldset.duplicate-project-reference.e2e-duplicate-project-reference
             select(
                 ng-model="vm.projectForm.project"
@@ -19,8 +19,6 @@
                 )
 
         div(ng-include="'projects/create/import-project-form-common/description.html'")
-        div(ng-include="'projects/create/import-project-form-common/max-private-warning.html'")
-        div(ng-include="'projects/create/import-project-form-common/max-public-warning.html'")
         div(ng-include="'projects/create/import-project-form-common/project-privacy.html'")
 
         label(ng-if="vm.invitedMembers")
@@ -44,6 +42,11 @@
         p.create-project-limit(
             ng-if="!vm.projectForm.is_private && vm.limitMembersPublicProject"
             translate="PROJECT.CREATE.MAX_MEMBERS"
+        )
+
+        tg-create-project-restrictions(
+            can-create-public-projects="vm.canCreatePublicProjects"
+            can-create-private-projects="vm.canCreatePrivateProjects"
         )
 
         div(ng-include="'projects/create/import-project-form-common/actions.html'")

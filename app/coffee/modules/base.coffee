@@ -63,6 +63,11 @@ urls = {
     "register": "/register"
     "invitation": "/invitation/:token"
     "create-project": "/project/new"
+    "create-project-scrum": "/project/new/scrum"
+    "create-project-kanban": "/project/new/scrum"
+    "create-project-duplicate": "/project/new/duplicate"
+    "create-project-import": "/project/new/import"
+    "create-project-import-platform": "/project/new/import/:platform"
 
     "profile": "/profile"
     "user-profile": "/profile/:username"

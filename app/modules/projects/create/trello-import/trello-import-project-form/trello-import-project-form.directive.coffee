@@ -25,7 +25,8 @@ TrelloImportProjectFormDirective = () ->
         bindToController: true,
         scope: {
             project: '<',
-            onSaveProjectDetails: '&'
+            onSaveProjectDetails: '&',
+            onCancelForm: '&'
         }
     }
 

@@ -24,11 +24,8 @@ CreateProjectFormDirective = () ->
         controllerAs: "vm",
         bindToController: true,
         scope: {
-            type: '@',
-            onCancelProjectCreation: '&'
+            type: '@'
         }
     }
-
-CreateProjectFormDirective.$inject = []
 
 angular.module("taigaProjects").directive("tgCreateProjectForm", CreateProjectFormDirective)

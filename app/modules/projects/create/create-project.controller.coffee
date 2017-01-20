@@ -32,10 +32,6 @@ class CreateProjectController
 
         @.displayScrumDesc = false
         @.displayKanbanDesc = false
-        @.step = "home"
-
-        if @location.search().from == "trello" or @location.search().from == "jira" or @location.search().from == "github"  or @location.search().from == "asana"
-            @.step = "import"
 
     _setMeta: () ->
         return null if !@.project
@@ -48,10 +44,13 @@ class CreateProjectController
         }
 
     displayHelp: (type, $event) ->
+        $event.stopPropagation()
+        $event.preventDefault()
+
         if type == 'scrum'
             @.displayScrumDesc = !@.displayScrumDesc
         if type == 'kanban'
             @.displayKanbanDesc = !@.displayKanbanDesc
-        $event.stopPropagation()
+
 
 angular.module("taigaProjects").controller("CreateProjectCtrl", CreateProjectController)

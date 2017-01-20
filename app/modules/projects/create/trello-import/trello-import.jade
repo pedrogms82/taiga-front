@@ -1,6 +1,3 @@
-.create-project.import-project(ng-if="vm.step == 'autorization-trello'")
-        p autorization...
-
 tg-import-project-selector(
     logo="/#{v}/images/import-logos/trello.png"
     search="{{ 'PROJECT.IMPORT.TRELLO.CHOOSE_BOARD' | translate }}"
@@ -13,6 +10,7 @@ tg-import-project-selector(
 tg-trello-import-project-form(
     project="vm.project"
     on-save-project-details="vm.onSaveProjectDetails(project)"
+    on-cancel-form="vm.step = 'project-select-trello'"
     ng-if="vm.step == 'project-form-trello'"
 )
 
